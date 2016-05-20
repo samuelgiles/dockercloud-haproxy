@@ -127,6 +127,7 @@ class Haproxy(object):
                 Haproxy.cls_process = UpdateHelper.run_reload(Haproxy.cls_process)
             else:
                 logger.info("HAProxy configuration remains unchanged")
+                Haproxy.cls_process = UpdateHelper.run_reload(Haproxy.cls_process)
             logger.info("===========END===========")
         elif self.link_mode in ["legacy"]:
             logger.info("HAProxy configuration:\n%s" % cfg)
