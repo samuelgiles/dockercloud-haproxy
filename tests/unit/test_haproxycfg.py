@@ -68,21 +68,6 @@ class HaproxyUpdateTestCase(unittest.TestCase):
         self.assertFalse(mock_save.called)
         self.assertTrue(mock_run_reload.called)
 
-    @mock.patch("haproxy.haproxycfg.UpdateHelper.run_reload")
-    @mock.patch("haproxy.haproxycfg.save_to_file")
-    @mock.patch.object(haproxycfg.Haproxy, '_initialize')
-    def test_update_haproxy_cfg_no_updates(self, mock_init, mock_save, mock_run_reload):
-        haproxy = Haproxy()
-        haproxy.link_mode = "cloud"
-        cfg = {"key": "value"}
-        Haproxy.cls_cfg = cfg
-        haproxy.ssl_updated = False
-        mock_save.return_value = False
-
-        haproxy._update_haproxy(cfg)
-        self.assertFalse(mock_save.called)
-        self.assertFalse(mock_run_reload.called)
-
     @mock.patch("haproxy.haproxycfg.UpdateHelper.run_once")
     @mock.patch("haproxy.haproxycfg.UpdateHelper.run_reload")
     @mock.patch("haproxy.haproxycfg.save_to_file")
